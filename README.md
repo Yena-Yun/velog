@@ -1,101 +1,53 @@
-<p align='middle'>
-<a href='https://github.com/DevFoliOh/velog'><img src='https://user-images.githubusercontent.com/66353903/142974589-1a9d29a4-3c67-4208-b861-00491a02f810.png' width="200px;" alt="Velog" /></a></p>
+## 🧨 주제
+Velog 벤치마킹 웹
 
+## 🚝 배포링크
+[DevFoliOh Velog로 이동](https://determined-volhard-ea03ee.netlify.app)
 
-<h1 align='middle'><a href='https://determined-volhard-ea03ee.netlify.app'>https://determined-volhard-ea03ee.netlify.app</a></h1>
+## 👘 특징
+- Velog 뷰를 기반으로 리액트 CRUD 연습
+- [Swagger UI](https://limitless-sierra-67996.herokuapp.com/v1/docs/)로 API 통신 진행
+- 프론트엔드 3명이 협업하여 7일 간 작업
 
-
-## 📌 프로젝트 소개
-
-### Velog(벨로그) 서비스
-
-> ❕ **Velog를 벤치 마킹한 블로그 서비스입니다. **❗
-
-- `Swagger UI`제공하는 서버를 이용하여 프로젝트를 진행했습니다.
-- `Swagger UI의 API Documentation`의 API를 사용하여 개발을 진행하였습니다.
-
-<br/>
-
-![image](https://user-images.githubusercontent.com/66353903/142976104-d163bec4-f0a3-468b-adfa-0f21572a8d1f.png)
+## 🧶 기술 스택
+- React
+- Redux
+- styled-components
 
 
 <br/>
 
-## 📑 구현 목록
+<img src="https://user-images.githubusercontent.com/66353903/142976104-d163bec4-f0a3-468b-adfa-0f21572a8d1f.png" width="600" />
 
-`게시글 목록 조회`
-
-- Server에 저장되는 포스트를 가져와서 렌더링
-- 첫 렌더는 포스트10개로 제한되며, 무한 스크롤적용으로 스크롤시 10개씩 추가 렌더링
-- Scroll to Top버튼으로 페이지 맨 상단으로 이동
-- 게시글 로딩시 스켈레톤 UI적용
-- 게시글 반응형 적용
 
 <br/>
 
-`게시글 등록`
+## ⛳ 본인이 구현한 내용
 
-- CKEditor5로 마크다운 에디터 적용
-- 제목, 태그, 본문, 썸네일 등록 가능
-- 작성내용들을 미리 확인할 수 있는 미리보기 기능
-- 작성중인 내용저장을 위한 임시저장 기능(localStorage에 데이터저장)
-- 임시저장한 데이터 불러오기 기능
-- '뒤로가기'버튼 클릭시 안내를 위한 모달창 생성
-- '출간하기'버튼 클릭시 서버에 업로드되며, 메인페이지로 이동
-- 썸네일 등록 및 미리보기 기능
+### API 통신
+- GET /posts로 전체 글 렌더링
+- PATCH /posts/{id}로 수정한 글 서버에 보내기
 
-<br/>
+### 카드 리스트 뷰 구현
+- flew-wrap: wrap 등의 CSS를 통해 카드 뷰 구현
+- 화면의 크기에 따라 반응하는 반응형 뷰 구현
 
-`게시글 상세 조회`
+### 무한 스크롤
+- 처음에 카드 10개를 보여주고 스크롤을 내리면 자동으로 추가 렌더링
 
-- 서버에 저장된 포스트의 id값에 따라 선택된 포스트의 데이터 호출
-- 상세페이지 로딩시 스켈레톤UI 적용
-- 게시글 공유를 위한 카카오톡 공유 기능 적용
-- textarea로 댓글 작성 기능 구현
-- 총 댓글의 갯수 표시
-- 각각의 댓글 수정 및 삭제 기능 구현
-- '수정'버튼 클릭시 작성되어있던 내용이 textarea에 반영되서 수정
-- 댓글 및 포스트 삭제시 서버에서 데이터 삭제
-- '댓글 및 포스트 삭제' 버튼 클릭시 삭제 재확인을 위한 모달창 생성
+### UX를 올리기 위한 노력
+- 카드 리스트 최상단으로 가기 위한 Top 버튼
+- 로딩 시간을 위한 스켈레톤 UI
+- 글 작성 페이지에서 이미지 업로드 시 대기 시간을 위한 로딩 스피너
 
-<br/>
+## 그 외 구현된 내용
+- 마크다운 에디터 적용 (CKEditor5)
+- 글 작성 시 작성 내용 미리 보기
+- 글 임시저장 및 불러오기 (localStorage)
+- 뒤로가기 클릭 시 확인 모달창 띄우기
+- Redux로 클라이언트의 상태를 전역 상태 관리
 
-`게시글 수정`
-
-- 해당 포스트의 게시글 수정페이지 진입시 해당포스트의 데이터를 각 부분에 맞게 가져옴(제목, 태그, 썸네일, 본문내용)
-- 서버에서 가져온 내용들을 수정 및 삭제 가능
-- 수정한 내용을 임시저장하기 위한 임시저장 기능
-- 임시저장한 내용을 가져오기 위한 불러오기 기능
-- 수정하던 내용을 미리보기위한 미리보기 기능
-- 수정완료 후 '수정하기' 버튼 클릭시 PATCH의 형태로 서버에 업로드 및 상세페이지로 이동
-- '뒤로가기'버튼 클릭시 안내를 위한 모달창 생성
-
-<br/>
-
-`게시글 삭제`
-
-- 게시글 및 댓글 삭제를 위한 Modal컴포넌트 생성
-- 해당 모달은 재사용을 고려하여 구현
-- 게시글 작성중 뒤로가기, 게시글 삭제, 댓글 삭제에 사용
-
-<br/>
 
 ## 💻 실행 방법
 
-### 설치
-
-`npm install`
-
-### 실행
-
-`npm start`
-
-
-<br/>
-
-## ⚙ 기술 스택
-
-- React.js
-- Redux
-- Swagger UI API Document
-- Styled-Components
+클론 후 `npm install` => `npm start`
