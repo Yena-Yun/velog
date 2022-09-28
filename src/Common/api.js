@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+// Swagger UI 주소
 const BASE_URL = 'https://limitless-sierra-67996.herokuapp.com/v1';
 
 const HTTP_METHOD = {

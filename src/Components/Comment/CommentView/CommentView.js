@@ -3,7 +3,7 @@ import { style } from './CommentViewStyle';
 import CommentWrite from '../CommentWrite/CommentWrite';
 import { useDispatch } from 'react-redux';
 import { currentCommentAction } from 'Modules/currentComment/currentComment';
-import avatar from 'Assets/avatar.png';
+import avatar from 'Assets/images/avatar.png';
 const CommentView = ({ comment, openModal }) => {
   const [isOpenPatchText, setIsOpenPatch] = useState(false);
   const [current, setCurrent] = useState(comment);

@@ -13,7 +13,7 @@ import PostShare from 'Components/PostShare/PostShare';
 import { debounce } from 'lodash';
 import CommentWrite from 'Components/Comment/CommentWrite/CommentWrite';
 import Modal from 'Components/Modal/Modal';
-import avatar from 'Assets/avatar.png';
+import avatar from 'Assets/images/avatar.png';
 
 const DetailPage = ({ history }) => {
   const [detailData, setDetailData] = useState({

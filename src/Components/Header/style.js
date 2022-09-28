@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const HeaderWrap = styled.header`
+export const HeaderWrap = styled.header`
   width: 100%;
   height: 4rem;
 `;
 
-const HeaderContent = styled.div`
+export const HeaderContent = styled.div`
   width: 1728px;
   margin: auto;
   height: 100%;
@@ -26,30 +26,23 @@ const HeaderContent = styled.div`
   }
 `;
 
-const Logo = styled.div`
+export const Logo = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
-const LogoLink = styled(Link)`
+export const LogoLink = styled(Link)`
   text-decoration: none;
   color: black;
 `;
 
-const LogoImg = styled.svg`
-  margin-right: 1rem;
-  width: 1.75rem;
-  height: 1.75rem;
-  display: block;
-`;
-
-const RightContent = styled.div`
+export const RightContent = styled.div`
   display: flex;
   align-items: center;
 `;
 
-const Search = styled.div`
+export const SearchIconWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -67,7 +60,7 @@ const Search = styled.div`
   }
 `;
 
-const WriteBtn = styled(Link)`
+export const MoveToWrite = styled(Link)`
   display: flex;
   align-items: center;
   height: 2rem;
@@ -91,13 +84,13 @@ const WriteBtn = styled(Link)`
   }
 `;
 
-const Profile = styled.div`
+export const Profile = styled.div`
   cursor: pointer;
   display: flex;
   align-items: center;
 `;
 
-const ProfileImg = styled.img`
+export const ProfileImage = styled.img`
   display: block;
   height: 2.5rem;
   width: 2.5rem;
@@ -107,7 +100,7 @@ const ProfileImg = styled.img`
   transition: all 0.125s ease-in 0s;
 `;
 
-const Dropdown = styled.svg`
+export const Dropdown = styled.svg`
   font-size: 1.5rem;
   margin-left: 0.25 rem;
   color: rgb(134, 142, 150);
@@ -118,17 +111,3 @@ const Dropdown = styled.svg`
     color: rgb(52, 58, 64);
   }
 `;
-
-export const style = {
-  HeaderWrap,
-  HeaderContent,
-  Logo,
-  LogoImg,
-  RightContent,
-  Search,
-  WriteBtn,
-  Profile,
-  ProfileImg,
-  Dropdown,
-  LogoLink,
-};

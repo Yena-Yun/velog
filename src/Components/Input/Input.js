@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { style } from './InputStyle';
-import default_thumb from 'Assets/default_image.png';
+import default_thumb from 'Assets/images/default_image.png';
 
 const Input = ({ url, setUrl }) => {
   const inputOpenImageRef = useRef(null);

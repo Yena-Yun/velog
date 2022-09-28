@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { style } from './ListPageStyle';
+import { useState, useEffect } from 'react';
+import { useInView } from 'react-intersection-observer';
 import Header from 'Components/Header/Header';
 import Card from 'Components/Card/Card';
-import useGetListData from 'Hooks/useGetListData';
-import { useInView } from 'react-intersection-observer';
-import MenuApi from 'Common/api';
 import ListSkeleton from 'Components/ListSkeleton/ListSkeleton';
 import ScrollToTop from 'Components/ScrollToTop/ScrollToTop';
+import useGetListData from 'Hooks/useGetListData';
+import MenuApi from 'Common/api';
+import { style } from './ListPageStyle';
 
 const ListPage = ({ history }) => {
-  const [postData, setPostData] = useState(null);
+  const [postData, setPostData] = useState([]);
   const [location, setLocation] = useState('');
   const [ref, inView] = useInView();
   const [page, setPage] = useState(2);
@@ -21,10 +21,10 @@ const ListPage = ({ history }) => {
     if (inView) {
       MenuApi.getAllPosts(page).then((res) => {
         if (!res.data) {
-          return;
+          throw Error('더 이상 불러올 데이터가 없음');
         } else {
-          setPostData(() => postData.concat(res.data.results));
-          setPage((prevState) => prevState + 1);
+          setPostData((prev) => prev.concat(res.data.results));
+          setPage((prev) => prev + 1);
         }
       });
     }

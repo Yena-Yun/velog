@@ -6,7 +6,7 @@ import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { formatDate } from 'Common/formatDate';
 import parse from 'html-react-parser';
-import defaultImg from 'Assets/default.png';
+import defaultImg from 'Assets/images/default.png';
 const Card = ({ posts }) => {
   const { getCard } = getCardAction;
   const dispatch = useDispatch();
