@@ -11,11 +11,11 @@ import CommentView from 'Components/Comment/CommentView/CommentView';
 import DetailSkeleton from 'Components/DetailSkeleton/DetailSkeleton';
 import ActionBox from 'Components/DetailAction/DetailAction';
 import PostShare from 'Components/PostShare/PostShare';
-import CommentWrite from 'Components/Comment/CommentWrite/CommentWrite';
+import CommentInput from 'Components/Comment/CommentWrite/CommentWrite';
 import Modal from 'Components/Modal/Modal';
 import { formatDate } from 'Common/formatDate';
-import avatar from 'Assets/images/avatar.png';
 import { FlexCustom } from 'Styles/theme';
+import avatar from 'Assets/images/avatar.png';
 
 const DetailPage = ({ history }) => {
   const [detailData, setDetailData] = useState({
@@ -52,7 +52,7 @@ const DetailPage = ({ history }) => {
     }
   }, []);
 
-  const toggleModal = useCallback((click) => {
+  const onToggleModal = useCallback((click) => {
     setShowModal(false);
 
     if (click) {
@@ -61,7 +61,7 @@ const DetailPage = ({ history }) => {
     }
   }, []);
 
-  const deleteComment = useCallback(
+  const onDeleteComment = useCallback(
     (selectedId) => {
       setCommentData(commentData.filter(({ id }) => id !== selectedId));
     },
@@ -103,7 +103,7 @@ const DetailPage = ({ history }) => {
 
           <FlexCustom justify="between">
             <p>{formatDate(createdAt)}</p>
-            <ActionBox openModal={toggleModal} id={id} />
+            <ActionBox openModal={onToggleModal} id={id} />
           </FlexCustom>
 
           <S.TagList>
@@ -126,21 +126,22 @@ const DetailPage = ({ history }) => {
           ></S.Content>
 
           <S.UserContainer>
-            <S.UserImg src={avatar} alt="user" />
-            <S.UserDescriptionWrap>
-              <S.UserDescriptionTitle>User</S.UserDescriptionTitle>
-              <S.UserDescriptionSubTitle>Front-end</S.UserDescriptionSubTitle>
-            </S.UserDescriptionWrap>
+            <S.UserImage src={avatar} alt="user" />
+            <S.UserInfo align="start">
+              <S.UserName>User</S.UserName>
+              <S.UserDescription>Front-end</S.UserDescription>
+            </S.UserInfo>
           </S.UserContainer>
+
           <S.CommentContainer>
             <S.CommentCount>{`${commentData.length}개의 댓글`}</S.CommentCount>
-            <CommentWrite onTextSubmit={onCreateComment} />
+            <CommentInput onTextSubmit={onCreateComment} />
             <S.CommentList>
-              {commentData.map((comment) => (
+              {commentData?.map((comment) => (
                 <CommentView
                   key={comment.id}
                   comment={comment}
-                  openModal={toggleModal}
+                  openModal={onToggleModal}
                 />
               ))}
             </S.CommentList>
@@ -155,10 +156,10 @@ const DetailPage = ({ history }) => {
           modalLink="/"
           postId={id}
           mainRef={mainRef}
-          deleteComment={deleteComment}
+          deleteComment={onDeleteComment}
           clickComponent={clickComponent}
           history={history}
-          onToggleModal={toggleModal}
+          onToggleModal={onToggleModal}
         />
       )}
       {showModal && clickComponent === 'commentDelete' && (
@@ -168,9 +169,9 @@ const DetailPage = ({ history }) => {
           modalLink=""
           postId={id}
           mainRef={mainRef}
-          deleteComment={deleteComment}
+          deleteComment={onDeleteComment}
           clickComponent={clickComponent}
-          onToggleModal={toggleModal}
+          onToggleModal={onToggleModal}
         />
       )}
     </S.Main>

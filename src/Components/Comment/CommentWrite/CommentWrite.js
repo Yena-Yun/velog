@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { style } from './CommentWriteStyle';
 import MenuApi from 'Common/api';
 
-const CommentWrite = ({
+const CommentInput = ({
   onTextSubmit,
   currentComment,
   CommentId,
@@ -47,6 +47,6 @@ const CommentWrite = ({
   );
 };
 
-export default CommentWrite;
+export default CommentInput;
 
 const { CommentTextArea, ButtonWraper, Button, CloseButton } = style;

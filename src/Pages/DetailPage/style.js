@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { FlexColumn } from 'Styles/theme';
 
 export const Main = styled.main`
   width: 100%;
@@ -80,36 +81,32 @@ export const UserContainer = styled.footer`
   border-bottom: 1px solid rgb(233, 236, 239); ;
 `;
 
-export const UserImg = styled.img`
+export const UserImage = styled.img`
   width: 8rem;
   height: 8rem;
   cursor: pointer;
 `;
 
-export const UserDescriptionWrap = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+export const UserInfo = styled(FlexColumn)`
   margin-left: 1rem;
 `;
 
-export const UserDescriptionTitle = styled.div`
+export const UserName = styled.div`
   font-size: 1.5rem;
   line-height: 1.5;
   font-weight: bold;
   color: rgb(33, 37, 41);
 `;
 
-export const UserDescriptionSubTitle = styled.div`
-  white-space: pre-wrap;
+export const UserDescription = styled.div`
   font-size: 1.125rem;
   line-height: 1.5;
   margin-top: 0.25rem;
   color: rgb(73, 80, 87);
   letter-spacing: -0.004em;
+  white-space: pre-wrap;
 `;
 
 export const CommentList = styled.ul`
-  margin-top: 2.5rem;
-  margin-bottom: 4rem;
+  margin: 2.5rem 0 4rem;
 `;

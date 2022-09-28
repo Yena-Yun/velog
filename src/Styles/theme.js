@@ -9,8 +9,9 @@ export const FlexCenter = styled(FlexBox)`
   align-items: center;
 `;
 
-export const FlexColumn = styled(FlexCenter)`
+export const FlexColumn = styled(FlexBox)`
   flex-direction: column;
+  align-items: ${({ align }) => (align === 'start' ? 'flex-start' : 'center')};
 `;
 
 export const FlexCustom = styled(FlexBox)`

@@ -1,7 +1,7 @@
 import MenuApi from 'Common/api';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { style } from './ModalStyle';
+import { style } from './style';
 
 const Modal = (props) => {
   const {
