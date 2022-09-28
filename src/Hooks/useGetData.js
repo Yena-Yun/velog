@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import MenuApi from 'Common/api';
 
-const useGetData = (setPostData, setComment, id) => {
+const useGetData = (setDetailData, setCommentData, id) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const getData = async (id) => {
@@ -9,8 +9,8 @@ const useGetData = (setPostData, setComment, id) => {
       setIsLoading(true);
       const postResponse = await MenuApi.getPostDetail(id);
       const commentResponse = await MenuApi.getCommentData(id);
-      setPostData(postResponse.data);
-      setComment(commentResponse.data.results);
+      setDetailData(postResponse.data);
+      setCommentData(commentResponse.data.results);
       setIsLoading(false);
     } catch (error) {
       throw new Error('data load 실패');

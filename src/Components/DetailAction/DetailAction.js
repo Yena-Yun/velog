@@ -1,17 +1,15 @@
-import { formatDate } from 'Common/formatDate';
 import React from 'react';
 import { style } from './DetailActionStyle';
 
-const DetailAction = ({ openModal, detailData }) => {
+const DetailAction = ({ openModal, id }) => {
   const onOpenModal = () => {
     openModal('postDelete');
   };
 
   return (
     <ActionContainer>
-      <div>{formatDate(detailData.createdAt)}</div>
       <ActionWrap>
-        <EditLink to={`/edit/${detailData.id}`}>
+        <EditLink to={`/edit/${id}`}>
           <ActionChange>수정</ActionChange>
         </EditLink>
         <ActionDelete onClick={onOpenModal}>삭제</ActionDelete>

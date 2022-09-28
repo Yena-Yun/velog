@@ -5,18 +5,17 @@ import { removeHTMLTagFromString } from 'Common/removeHTMLTag';
 
 const PostShare = ({ isFixedShare, detailData }) => {
   const [shareContainerStyle, setShareContainerStyle] = useState({
-    position: 'relative',
+    position: '',
   });
 
   useEffect(() => {
     if (isFixedShare) {
       setShareContainerStyle({
         position: 'fixed',
-        top: '112px',
       });
     } else {
       setShareContainerStyle({
-        position: 'relative',
+        position: 'absolute',
       });
     }
   }, [isFixedShare]);

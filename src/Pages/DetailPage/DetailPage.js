@@ -1,19 +1,21 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import Header from 'Components/Header/Header';
-import { style } from './DetailPageStyle';
-import Tag from 'Components/Tag/Tag';
-import CommentView from 'Components/Comment/CommentView/CommentView';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { debounce } from 'lodash';
 import parse from 'html-react-parser';
 import MenuApi from 'Common/api';
-import { useSelector } from 'react-redux';
 import useGetData from 'Hooks/useGetData';
+import * as S from './style';
+import Header from 'Components/Header/Header';
+import Tag from 'Components/Tag/Tag';
+import CommentView from 'Components/Comment/CommentView/CommentView';
 import DetailSkeleton from 'Components/DetailSkeleton/DetailSkeleton';
-import DetailAction from 'Components/DetailAction/DetailAction';
+import ActionBox from 'Components/DetailAction/DetailAction';
 import PostShare from 'Components/PostShare/PostShare';
-import { debounce } from 'lodash';
 import CommentWrite from 'Components/Comment/CommentWrite/CommentWrite';
 import Modal from 'Components/Modal/Modal';
+import { formatDate } from 'Common/formatDate';
 import avatar from 'Assets/images/avatar.png';
+import { FlexCustom } from 'Styles/theme';
 
 const DetailPage = ({ history }) => {
   const [detailData, setDetailData] = useState({
@@ -26,44 +28,22 @@ const DetailPage = ({ history }) => {
   });
   const [commentData, setCommentData] = useState([]);
   const [tagArr, setTagArr] = useState([]);
-  const [isFixedShare, setIsFixedshare] = useState();
+  const [isFixed, setIsFixed] = useState(true);
   const [clickComponent, setClickComponent] = useState('');
   const [showModal, setShowModal] = useState(false);
   const mainRef = useRef();
 
-  const card = useSelector((state) => state.getCardReducer.card);
+  const { id } = useSelector((state) => state.getCardReducer.card);
 
-  const onToggleModal = useCallback((click) => {
-    setShowModal(false);
-    if (click) {
-      setClickComponent(click);
-      setShowModal(true);
-    }
-  }, []);
+  const loading = useGetData(setDetailData, setCommentData, id);
 
-  const setPostData = useCallback((data) => {
-    setDetailData(data);
-  }, []);
+  const onCreateComment = useCallback(async (text) => {
+    const response = await MenuApi.createComment(id, text);
 
-  const setComment = useCallback((data) => {
-    setCommentData(data);
-  }, []);
-
-  const deleteComment = useCallback(
-    (id) => {
-      const deleteData = commentData.filter((data) => data.id !== id);
-      setCommentData(deleteData);
-    },
-    [commentData],
-  );
-
-  const loading = useGetData(setPostData, setComment, card.id);
-
-  const onTextSubmit = useCallback(async (text) => {
-    const response = await MenuApi.createComment(card.id, text);
     if (response) {
-      const commentResponse = await MenuApi.getCommentData(card.id);
+      const commentResponse = await MenuApi.getCommentData(id);
       setCommentData(commentResponse.data.results);
+
       mainRef.current.scrollIntoView({
         behavior: 'smooth',
         block: 'end',
@@ -72,36 +52,113 @@ const DetailPage = ({ history }) => {
     }
   }, []);
 
-  const onFixedShareComponent = () => {
-    if (window.pageYOffset > 220) {
-      setIsFixedshare(true);
-    } else {
-      setIsFixedshare(false);
+  const toggleModal = useCallback((click) => {
+    setShowModal(false);
+
+    if (click) {
+      setClickComponent(click);
+      setShowModal(true);
     }
-  };
+  }, []);
+
+  const deleteComment = useCallback(
+    (selectedId) => {
+      setCommentData(commentData.filter(({ id }) => id !== selectedId));
+    },
+    [commentData],
+  );
 
   useEffect(() => {
-    window.addEventListener('scroll', debounce(onFixedShareComponent, 10));
+    // 수정 페이지 들어올 때마다 스크롤 맨 위로
+    window.scrollTo(0, 0);
+
+    // 스크롤 시 왼쪽 카카오톡 공유 버튼 고정 여부 최적화
+    window.addEventListener(
+      'scroll',
+      debounce(() => {
+        if (window.pageYOffset > 220) {
+          setIsFixed(true);
+        } else {
+          setIsFixed(false);
+        }
+      }, 10),
+    );
   }, []);
 
   useEffect(() => {
-    detailData && setTagArr(detailData.tags);
-    detailData && window.scrollTo(0, 0);
+    setTagArr(detailData?.tags);
   }, [detailData]);
 
+  const { title, createdAt, thumbnail, body } = detailData;
+
   return (
-    <Main ref={mainRef}>
+    <S.Main ref={mainRef}>
+      <Header />
+
+      {loading ? (
+        <DetailSkeleton />
+      ) : (
+        <S.Body>
+          <S.Title>{title}</S.Title>
+
+          <FlexCustom justify="between">
+            <p>{formatDate(createdAt)}</p>
+            <ActionBox openModal={toggleModal} id={id} />
+          </FlexCustom>
+
+          <S.TagList>
+            {tagArr?.map((tagContent, index) => (
+              <Tag key={`${index}_${tagContent}`} tagContent={tagContent} />
+            ))}
+
+            {/* 카카오톡 공유 버튼 */}
+            {!loading && (
+              <PostShare isFixedShare={isFixed} detailData={detailData} />
+            )}
+          </S.TagList>
+
+          <S.ThumbnailWrap>
+            {thumbnail && <S.Thumbnail src={thumbnail} alt="thumbnail" />}
+          </S.ThumbnailWrap>
+
+          <S.Content
+            dangerouslySetInnerHTML={{ __html: parse(body) }}
+          ></S.Content>
+
+          <S.UserContainer>
+            <S.UserImg src={avatar} alt="user" />
+            <S.UserDescriptionWrap>
+              <S.UserDescriptionTitle>User</S.UserDescriptionTitle>
+              <S.UserDescriptionSubTitle>Front-end</S.UserDescriptionSubTitle>
+            </S.UserDescriptionWrap>
+          </S.UserContainer>
+          <S.CommentContainer>
+            <S.CommentCount>{`${commentData.length}개의 댓글`}</S.CommentCount>
+            <CommentWrite onTextSubmit={onCreateComment} />
+            <S.CommentList>
+              {commentData.map((comment) => (
+                <CommentView
+                  key={comment.id}
+                  comment={comment}
+                  openModal={toggleModal}
+                />
+              ))}
+            </S.CommentList>
+          </S.CommentContainer>
+        </S.Body>
+      )}
+
       {showModal && clickComponent === 'postDelete' && (
         <Modal
           title="포스트 삭제"
           description="정말로 삭제하시겠습니까?"
           modalLink="/"
-          postId={card.id}
+          postId={id}
           mainRef={mainRef}
           deleteComment={deleteComment}
           clickComponent={clickComponent}
           history={history}
-          onToggleModal={onToggleModal}
+          onToggleModal={toggleModal}
         />
       )}
       {showModal && clickComponent === 'commentDelete' && (
@@ -109,80 +166,15 @@ const DetailPage = ({ history }) => {
           title="댓글 삭제"
           description="댓글을 정말로 삭제하시겠습니까?"
           modalLink=""
-          postId={card.id}
+          postId={id}
           mainRef={mainRef}
           deleteComment={deleteComment}
           clickComponent={clickComponent}
-          onToggleModal={onToggleModal}
+          onToggleModal={toggleModal}
         />
       )}
-
-      <Header />
-      {loading ? (
-        <DetailSkeleton />
-      ) : (
-        <Body>
-          <Title>{detailData.title}</Title>
-          <DetailAction openModal={onToggleModal} detailData={detailData} />
-          <TagList>
-            {tagArr &&
-              tagArr.map((tagContent, index) => (
-                <Tag key={index} tagContent={tagContent} />
-              ))}
-            {!loading && (
-              <PostShare isFixedShare={isFixedShare} detailData={detailData} />
-            )}
-          </TagList>
-          <ThumbnailWrap>
-            {detailData.thumbnail && (
-              <Thumbnail src={detailData.thumbnail} alt="thumbnail"></Thumbnail>
-            )}
-          </ThumbnailWrap>
-          <Content
-            dangerouslySetInnerHTML={{ __html: parse(detailData.body) }}
-          ></Content>
-          <UserContainer>
-            <UserImg src={avatar} alt="user" />
-            <UserDescriptionWrap>
-              <UserDescriptionTitle>User</UserDescriptionTitle>
-              <UserDescriptionSubTitle>Front-end</UserDescriptionSubTitle>
-            </UserDescriptionWrap>
-          </UserContainer>
-          <CommentContainer>
-            <CommentCount>{`${commentData.length}개의 댓글`}</CommentCount>
-            <CommentWrite onTextSubmit={onTextSubmit} />
-            <CommentList>
-              {commentData.map((comment) => (
-                <CommentView
-                  key={comment.id}
-                  comment={comment}
-                  openModal={onToggleModal}
-                />
-              ))}
-            </CommentList>
-          </CommentContainer>
-        </Body>
-      )}
-    </Main>
+    </S.Main>
   );
 };
 
 export default DetailPage;
-
-const {
-  Main,
-  Body,
-  Title,
-  TagList,
-  ThumbnailWrap,
-  Thumbnail,
-  Content,
-  CommentContainer,
-  CommentCount,
-  CommentList,
-  UserContainer,
-  UserImg,
-  UserDescriptionWrap,
-  UserDescriptionTitle,
-  UserDescriptionSubTitle,
-} = style;

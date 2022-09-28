@@ -1,7 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import MenuApi from 'Common/api';
 
-const useGetListData = (page, setPostData, setLoading) => {
+const useGetListData = (page, setPostData) => {
+  const [loading, setLoading] = useState(false);
+
   const getData = async () => {
     try {
       setLoading(true);
@@ -16,6 +18,8 @@ const useGetListData = (page, setPostData, setLoading) => {
   useEffect(() => {
     getData();
   }, []);
+
+  return loading;
 };
 
 export default useGetListData;

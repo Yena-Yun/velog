@@ -9,15 +9,14 @@ import MenuApi from 'Common/api';
 import * as S from './style';
 
 const ListPage = ({ history }) => {
-  const [loading, setLoading] = useState(false);
   const [postData, setPostData] = useState([]);
   const [location, setLocation] = useState('');
 
   const [ref, inView] = useInView();
   const [page, setPage] = useState(2);
 
-  // API로 데이터를 받아오는 커스텀 훅
-  useGetListData(1, setPostData, setLoading);
+  // API로 전체 데이터 받아오기
+  const loading = useGetListData(1, setPostData);
 
   useEffect(() => {
     if (inView) {

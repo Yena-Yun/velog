@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 
 const ShareContainer = styled.div`
-  position: absolute;
+  position: relative;
   left: -7rem;
+  width: 3.5rem;
+  height: 3.5rem;
 `;
 
 const ShareWrap = styled.div`
   position: ${(props) => props.position};
-  top: ${(props) => props.top};
   width: 3.5rem;
   height: 3.5rem;
   background: rgb(248, 249, 250);
