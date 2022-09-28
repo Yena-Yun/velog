@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   background: #f8f9fa;
 `;
 
-const Container = styled.div`
+export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -33,7 +33,7 @@ const Container = styled.div`
   }
 `;
 
-const CardList = styled.div`
+export const CardList = styled.div`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -42,5 +42,3 @@ const CardList = styled.div`
 
   background: #f8f9fa;
 `;
-
-export const style = { Wrapper, Container, CardList };

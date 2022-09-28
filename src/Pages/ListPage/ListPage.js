@@ -1,20 +1,22 @@
 import { useState, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
+import useGetListData from 'Hooks/useGetListData';
 import Header from 'Components/Header/Header';
 import Card from 'Components/Card/Card';
 import ListSkeleton from 'Components/ListSkeleton/ListSkeleton';
 import ScrollToTop from 'Components/ScrollToTop/ScrollToTop';
-import useGetListData from 'Hooks/useGetListData';
 import MenuApi from 'Common/api';
-import { style } from './ListPageStyle';
+import * as S from './style';
 
 const ListPage = ({ history }) => {
+  const [loading, setLoading] = useState(false);
   const [postData, setPostData] = useState([]);
   const [location, setLocation] = useState('');
+
   const [ref, inView] = useInView();
   const [page, setPage] = useState(2);
-  const [loading, setLoading] = useState(false);
 
+  // API로 데이터를 받아오는 커스텀 훅
   useGetListData(1, setPostData, setLoading);
 
   useEffect(() => {
@@ -35,29 +37,26 @@ const ListPage = ({ history }) => {
   }, []);
 
   return (
-    <Wrapper>
+    <S.Wrapper>
       <Header location={location} />
-      <Container>
+      <S.Container>
         {loading ? (
           <ListSkeleton />
         ) : (
-          <CardList>
-            {postData &&
-              postData.map((posts) => {
-                return (
-                  <div ref={ref} key={posts.id}>
-                    <Card posts={posts} />
-                  </div>
-                );
-              })}
-          </CardList>
+          <S.CardList>
+            {postData?.map((posts) => (
+              <div ref={ref} key={posts.id}>
+                <Card posts={posts} />
+              </div>
+            ))}
+          </S.CardList>
         )}
-      </Container>
+      </S.Container>
+
+      {/* 클릭 시 최상단으로 이동하는 Top 버튼 */}
       <ScrollToTop />
-    </Wrapper>
+    </S.Wrapper>
   );
 };
 
 export default ListPage;
-
-const { Wrapper, Container, CardList } = style;

@@ -4,12 +4,6 @@ import MenuApi from 'Common/api';
 const useGetData = (setPostData, setComment, id) => {
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    if (id) {
-      getData(id);
-    }
-  }, []);
-
   const getData = async (id) => {
     try {
       setIsLoading(true);
@@ -22,6 +16,12 @@ const useGetData = (setPostData, setComment, id) => {
       throw new Error('data load 실패');
     }
   };
+
+  useEffect(() => {
+    if (id) {
+      getData(id);
+    }
+  }, []);
 
   return isLoading;
 };
