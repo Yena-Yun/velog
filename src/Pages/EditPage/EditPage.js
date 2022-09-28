@@ -8,6 +8,7 @@ import MenuApi from 'Common/api';
 import Modal from 'Components/Modal/Modal';
 import parse from 'html-react-parser';
 import { removeHTMLTagFromString } from 'Common/removeHTMLTag';
+
 const EditPage = ({ history }) => {
   const [loading, setLoading] = useState(false);
   const [title, setTitle] = useState('');
@@ -17,7 +18,7 @@ const EditPage = ({ history }) => {
   const [viewContent, setViewContent] = useState([]);
   const [url, setUrl] = useState('');
   const [showModal, setShowModal] = useState(false);
-  const [clickComponent, setClickComponent] = useState('');
+  const [condition, setCondition] = useState('');
   const id = useSelector((state) => state.getCardReducer.card.id);
 
   const getData = async (id) => {
@@ -91,7 +92,7 @@ const EditPage = ({ history }) => {
   const onToggleModal = useCallback((click) => {
     setShowModal(false);
     if (click) {
-      setClickComponent(click);
+      setCondition(click);
       setShowModal(true);
     }
   }, []);
@@ -203,7 +204,7 @@ const EditPage = ({ history }) => {
           description="정말 페이지를 벗어나시겠습니까?"
           modalLink="/"
           onToggleModal={onToggleModal}
-          clickComponent={clickComponent}
+          condition={condition}
           history={history}
         />
       )}

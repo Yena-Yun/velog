@@ -8,6 +8,7 @@ import Modal from 'Components/Modal/Modal';
 import MenuApi from 'Common/api';
 import parse from 'html-react-parser';
 import { removeHTMLTagFromString } from 'Common/removeHTMLTag';
+
 const WritePage = ({ history }) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -16,7 +17,7 @@ const WritePage = ({ history }) => {
   const [url, setUrl] = useState();
   const [showModal, setShowModal] = useState(false);
   const [check, setCheck] = useState(false);
-  const [clickComponent, setClickComponent] = useState('');
+  const [condition, setCondition] = useState('');
   const getTitle = (e) => {
     const { value } = e.target;
     setTitle(value);
@@ -66,10 +67,10 @@ const WritePage = ({ history }) => {
     }
   };
 
-  const onToggleModal = useCallback((click) => {
+  const onToggleModal = useCallback((condition) => {
     setShowModal(false);
-    if (click) {
-      setClickComponent(click);
+    if (condition) {
+      setCondition(condition);
       setShowModal(true);
     }
   }, []);
@@ -160,7 +161,7 @@ const WritePage = ({ history }) => {
           description="정말 페이지를 벗어나시겠습니까?"
           modalLink="/"
           onToggleModal={onToggleModal}
-          clickComponent={clickComponent}
+          condition={condition}
           history={history}
         />
       )}

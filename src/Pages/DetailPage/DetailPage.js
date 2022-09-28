@@ -29,7 +29,7 @@ const DetailPage = ({ history }) => {
   const [commentData, setCommentData] = useState([]);
   const [tagArr, setTagArr] = useState([]);
   const [isFixed, setIsFixed] = useState(true);
-  const [clickComponent, setClickComponent] = useState('');
+  const [condition, setCondition] = useState('');
   const [showModal, setShowModal] = useState(false);
   const mainRef = useRef();
 
@@ -52,11 +52,11 @@ const DetailPage = ({ history }) => {
     }
   }, []);
 
-  const onToggleModal = useCallback((click) => {
+  const onToggleModal = useCallback((condition) => {
     setShowModal(false);
 
-    if (click) {
-      setClickComponent(click);
+    if (condition) {
+      setCondition(condition);
       setShowModal(true);
     }
   }, []);
@@ -93,6 +93,31 @@ const DetailPage = ({ history }) => {
 
   return (
     <S.Main ref={mainRef}>
+      {showModal && condition === 'postDelete' && (
+        <Modal
+          title="포스트 삭제"
+          description="정말로 삭제하시겠습니까?"
+          modalLink="/"
+          postId={id}
+          mainRef={mainRef}
+          deleteComment={onDeleteComment}
+          condition={condition}
+          history={history}
+          onToggleModal={onToggleModal}
+        />
+      )}
+      {showModal && condition === 'commentDelete' && (
+        <Modal
+          title="댓글 삭제"
+          description="댓글을 정말로 삭제하시겠습니까?"
+          postId={id}
+          mainRef={mainRef}
+          deleteComment={onDeleteComment}
+          condition={condition}
+          onToggleModal={onToggleModal}
+        />
+      )}
+
       <Header />
 
       {loading ? (
@@ -147,32 +172,6 @@ const DetailPage = ({ history }) => {
             </S.CommentList>
           </S.CommentContainer>
         </S.Body>
-      )}
-
-      {showModal && clickComponent === 'postDelete' && (
-        <Modal
-          title="포스트 삭제"
-          description="정말로 삭제하시겠습니까?"
-          modalLink="/"
-          postId={id}
-          mainRef={mainRef}
-          deleteComment={onDeleteComment}
-          clickComponent={clickComponent}
-          history={history}
-          onToggleModal={onToggleModal}
-        />
-      )}
-      {showModal && clickComponent === 'commentDelete' && (
-        <Modal
-          title="댓글 삭제"
-          description="댓글을 정말로 삭제하시겠습니까?"
-          modalLink=""
-          postId={id}
-          mainRef={mainRef}
-          deleteComment={onDeleteComment}
-          clickComponent={clickComponent}
-          onToggleModal={onToggleModal}
-        />
       )}
     </S.Main>
   );

@@ -1,84 +1,68 @@
-import MenuApi from 'Common/api';
-import React from 'react';
 import { useSelector } from 'react-redux';
-import { style } from './style';
+import MenuApi from 'Common/api';
+import * as S from './style';
+import { FlexCustom } from 'Styles/theme';
 
-const Modal = (props) => {
-  const {
-    title,
-    description,
-    modalLink,
-    postId,
-    mainRef,
-    deleteComment,
-    clickComponent,
-    history,
-    onToggleModal,
-  } = props;
-
-  const comment = useSelector((state) => state.currentCommentReducer.comment);
+const Modal = ({
+  title,
+  description,
+  modalLink,
+  postId,
+  mainRef,
+  deleteComment,
+  condition,
+  history,
+  onToggleModal,
+} = {}) => {
+  const { id } = useSelector((state) => state.currentCommentReducer.comment);
 
   const closeModal = (e) => {
     if (e.target.innerText === '확인') {
-      clickComponent === 'postDelete' && onDeleteDetail();
-      clickComponent === 'commentDelete' && onDeleteComment();
-      clickComponent === 'goToBack' && history.push('/');
+      condition === 'postDelete' && onDeletePost();
+      condition === 'commentDelete' && onDeleteComment();
+      condition === 'goToBack' && history.push('/');
     } else {
       onToggleModal();
     }
   };
 
-  const onDeleteDetail = async () => {
+  const onDeletePost = async () => {
     await MenuApi.deleteDetail(postId);
-    history.push(modalLink);
+    modalLink && history.push(modalLink);
     onToggleModal();
   };
 
   const onDeleteComment = async () => {
-    const response = await MenuApi.deleteComment(comment.id);
+    const response = await MenuApi.deleteComment(id);
     onToggleModal();
+
     if (response) {
-      deleteComment(comment.id);
+      deleteComment(id);
+
       mainRef.current.scrollIntoView({
         behavior: 'smooth',
         block: 'end',
-        inline: 'end',
+        inline: 'nearest',
       });
     }
   };
 
   return (
-    <ModalContainer onClick={(e) => closeModal(e)}>
-      <ModalContent>
-        <ModalHeader>
-          <ModalTitle>{title}</ModalTitle>
-          <ModalDesc>{description}</ModalDesc>
-        </ModalHeader>
-        <ModalFooter>
-          <Button
-            style={{
-              background: 'rgb(233, 236, 239)',
-              color: 'rgb(73, 80, 87)',
-            }}
-            onClick={(e) => closeModal(e)}
-          >
-            취소
-          </Button>
-          <Button onClick={(e) => closeModal(e)}>확인</Button>
-        </ModalFooter>
-      </ModalContent>
-    </ModalContainer>
+    <S.Container onClick={closeModal}>
+      <S.Wrapper>
+        <S.Header>
+          <S.Title>{title}</S.Title>
+          <S.Content>{description}</S.Content>
+        </S.Header>
+        <FlexCustom>
+          <S.SelectButton onClick={closeModal}>취소</S.SelectButton>
+          <S.SelectButton confirm onClick={closeModal}>
+            확인
+          </S.SelectButton>
+        </FlexCustom>
+      </S.Wrapper>
+    </S.Container>
   );
 };
 
 export default Modal;
-
-const {
-  ModalContainer,
-  ModalContent,
-  ModalHeader,
-  ModalTitle,
-  ModalDesc,
-  ModalFooter,
-  Button,
-} = style;
