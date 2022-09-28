@@ -2,7 +2,7 @@
 Velog 벤치마킹 웹
 
 ## 🚝 배포링크
-[DevFoliOh Velog로 이동](https://determined-volhard-ea03ee.netlify.app)
+[DevFoliOh Velog!](https://determined-volhard-ea03ee.netlify.app)
 
 ## 👘 특징
 - Velog 뷰를 기반으로 리액트 CRUD 연습
