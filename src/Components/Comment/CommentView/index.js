@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { currentCommentAction } from 'Modules/currentComment';
-import CommentWrite from 'CommentWrite/CommentWrite';
-import avatar from 'Assets/images/avatar.png';
+import CommentWrite from 'Components/Comment/CommentWrite';
+import avatar from 'Assets/image/avatar.png';
 
 import * as S from './style';
 
@@ -59,4 +59,4 @@ const CommentView = ({ comment, openModal }) => {
   );
 };
 
-export default React.memo(CommentView);
+export default CommentView;

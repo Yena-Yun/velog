@@ -1,10 +1,10 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import parse from 'html-react-parser';
-import Editor from 'Components/utils/Editor';
-import Modal from 'Components/utils/Modal';
-import Input from 'Components/common/Input';
-import Button from 'Components/common/Button';
+import Editor from 'Components/Utils/Editor';
+import Modal from 'Components/Utils/Modal';
+import Input from 'Components/Common/Input';
+import Button from 'Components/Common/Button';
 import MenuApi from 'Common/api';
 import * as S from 'Pages/CreatePage/style';
 

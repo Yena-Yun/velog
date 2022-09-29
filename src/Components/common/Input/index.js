@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import default_thumb from 'Assets/images/default_image.png';
+import default_thumb from 'Assets/image/default_image.png';
 
 import * as S from './style';
 

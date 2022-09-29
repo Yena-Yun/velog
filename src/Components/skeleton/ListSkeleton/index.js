@@ -1,4 +1,4 @@
-import CardSkeleton from 'Components/skeleton/CardSkeleton';
+import CardSkeleton from 'Components/Skeleton/CardSkeleton';
 
 import * as S from './style';
 

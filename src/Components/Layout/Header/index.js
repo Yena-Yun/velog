@@ -1,4 +1,4 @@
-import avatar from 'Assets/images/avatar.png';
+import avatar from 'Assets/image/avatar.png';
 import { ReactComponent as HomeLogo } from 'Assets/svg/HomeLogo.svg';
 import { ReactComponent as RestLogo } from 'Assets/svg/RestLogo.svg';
 import { ReactComponent as SearchIcon } from 'Assets/svg/Search.svg';

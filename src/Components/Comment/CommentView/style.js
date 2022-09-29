@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { FlexCustom } from 'Styles/theme';
 
 export const CommentItem = styled.li`
   padding-top: 1.5rem;

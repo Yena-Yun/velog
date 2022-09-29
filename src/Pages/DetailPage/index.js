@@ -5,16 +5,16 @@ import parse from 'html-react-parser';
 import MenuApi from 'Common/api';
 import useGetData from 'Hooks/useGetData';
 import Header from 'Components/Layout/Header';
-import Tag from 'Components/common/Tag';
+import Tag from 'Components/Common/Tag';
 import CommentView from 'Components/Comment/CommentView';
-import DetailSkeleton from 'Components/skeleton/DetailSkeleton';
-import ActionBox from 'Components/utils/ActionBox/ActionBox';
-import PostShare from 'Components/utils/PostShare';
+import DetailSkeleton from 'Components/Skeleton/DetailSkeleton';
+import ActionBox from 'Components/Utils/ActionBox';
+import PostShare from 'Components/Utils/PostShare';
 import CommentInput from 'Components/Comment/CommentWrite';
-import Modal from 'Components/utils/Modal';
+import Modal from 'Components/Utils/Modal';
 import { formatDate } from 'Common/formatDate';
 import { FlexCustom } from 'Styles/theme';
-import avatar from 'Assets/images/avatar.png';
+import avatar from 'Assets/image/avatar.png';
 
 import * as S from './style';
 

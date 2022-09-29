@@ -4,7 +4,7 @@ import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { getCardAction } from 'Modules/getCard';
 import { formatDate } from 'Common/formatDate';
-import defaultImg from 'Assets/images/default.png';
+import defaultImg from 'Assets/image/default.png';
 
 import * as S from './style';
 
@@ -48,4 +48,4 @@ const Card = ({ posts }) => {
   }
 };
 
-export default React.memo(Card);
+export default Card;

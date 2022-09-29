@@ -1,8 +1,8 @@
 import { useCallback, useState } from 'react';
-import Editor from 'Components/utils/Editor';
-import Modal from 'Components/utils/Modal';
-import Input from 'Components/common/Input';
-import Button from 'Components/common/Button';
+import Editor from 'Components/Utils/Editor';
+import Modal from 'Components/Utils/Modal';
+import Input from 'Components/Common/Input';
+import Button from 'Components/Common/Button';
 import MenuApi from 'Common/api';
 import { FlexBox } from 'Styles/theme';
 

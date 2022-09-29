@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { FlexColumn } from 'Styles/theme';
 
 export const Main = styled.main`
   margin: 5.5rem auto 0;
