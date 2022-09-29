@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
-import { getCardReducer } from './getCard/getCard';
-import { currentCommentReducer } from './currentComment/currentComment';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+
+import { getCardReducer } from './getCard';
+import { getBodyReducer } from './getBody';
+import { currentCommentReducer } from './currentComment';
 
 const persistConfig = {
   key: 'root',
@@ -12,6 +14,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   getCardReducer,
+  getBodyReducer,
   currentCommentReducer,
 });
 

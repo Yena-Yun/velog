@@ -2220,7 +2220,7 @@
   "version" "7.0.9"
 
 "@types/json5@^0.0.29":
-  "integrity" "sha1-7ihweulOEdK4J7y+UnC86n8+ce4="
+  "integrity" "sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ=="
   "resolved" "https://registry.npmjs.org/@types/json5/-/json5-0.0.29.tgz"
   "version" "0.0.29"
 
@@ -5310,14 +5310,12 @@
     "debug" "^3.2.7"
     "resolve" "^1.20.0"
 
-"eslint-module-utils@^2.7.1":
-  "integrity" "sha512-fjoetBXQZq2tSTWZ9yWVl2KuFrTZZH3V+9iD1V1RfpDgxzJR+mPd/KZmMiA8gbPqdBzpNiEHOuT7IYEWxrH0zQ=="
-  "resolved" "https://registry.npmjs.org/eslint-module-utils/-/eslint-module-utils-2.7.1.tgz"
-  "version" "2.7.1"
+"eslint-module-utils@^2.7.3":
+  "integrity" "sha512-j4GT+rqzCoRKHwURX7pddtIPGySnX9Si/cgMI5ztrcqOPtk5dDEeZ34CQVPphnqkJytlc97Vuk05Um2mJ3gEQA=="
+  "resolved" "https://registry.npmjs.org/eslint-module-utils/-/eslint-module-utils-2.7.4.tgz"
+  "version" "2.7.4"
   dependencies:
     "debug" "^3.2.7"
-    "find-up" "^2.1.0"
-    "pkg-dir" "^2.0.0"
 
 "eslint-plugin-flowtype@^5.2.0":
   "integrity" "sha512-vcz32f+7TP+kvTUyMXZmCnNujBQZDNmcqPImw8b9PZ+16w1Qdm6ryRuYZYVaG9xRqqmAPr2Cs9FAX5gN+x/bjw=="
@@ -5327,24 +5325,24 @@
     "lodash" "^4.17.15"
     "string-natural-compare" "^3.0.1"
 
-"eslint-plugin-import@^2.22.0", "eslint-plugin-import@^2.22.1":
-  "integrity" "sha512-RzAVbby+72IB3iOEL8clzPLzL3wpDrlwjsTBAQXgyp5SeTqqY+0bFubwuo+y/HLhNZcXV4XqTBO4LGsfyHIDXg=="
-  "resolved" "https://registry.npmjs.org/eslint-plugin-import/-/eslint-plugin-import-2.25.3.tgz"
-  "version" "2.25.3"
+"eslint-plugin-import@^2.22.0", "eslint-plugin-import@^2.22.1", "eslint-plugin-import@^2.26.0":
+  "integrity" "sha512-hYfi3FXaM8WPLf4S1cikh/r4IxnO6zrhZbEGz2b660EJRbuxgpDS5gkCuYgGWg2xxh2rBuIr4Pvhve/7c31koA=="
+  "resolved" "https://registry.npmjs.org/eslint-plugin-import/-/eslint-plugin-import-2.26.0.tgz"
+  "version" "2.26.0"
   dependencies:
     "array-includes" "^3.1.4"
     "array.prototype.flat" "^1.2.5"
     "debug" "^2.6.9"
     "doctrine" "^2.1.0"
     "eslint-import-resolver-node" "^0.3.6"
-    "eslint-module-utils" "^2.7.1"
+    "eslint-module-utils" "^2.7.3"
     "has" "^1.0.3"
-    "is-core-module" "^2.8.0"
+    "is-core-module" "^2.8.1"
     "is-glob" "^4.0.3"
-    "minimatch" "^3.0.4"
+    "minimatch" "^3.1.2"
     "object.values" "^1.1.5"
-    "resolve" "^1.20.0"
-    "tsconfig-paths" "^3.11.0"
+    "resolve" "^1.22.0"
+    "tsconfig-paths" "^3.14.1"
 
 "eslint-plugin-jest@^24.0.0", "eslint-plugin-jest@^24.1.0":
   "integrity" "sha512-wUxdF2bAZiYSKBclsUMrYHH6WxiBreNjyDxbRv345TIvPeoCEgPNEn3Sa+ZrSqsf1Dl9SqqSREXMHExlMMu1DA=="
@@ -5897,13 +5895,6 @@
     "commondir" "^1.0.1"
     "make-dir" "^3.0.2"
     "pkg-dir" "^4.1.0"
-
-"find-up@^2.1.0":
-  "integrity" "sha1-RdG35QbHF93UgndaK3eSCjwMV6c="
-  "resolved" "https://registry.npmjs.org/find-up/-/find-up-2.1.0.tgz"
-  "version" "2.1.0"
-  dependencies:
-    "locate-path" "^2.0.0"
 
 "find-up@^3.0.0":
   "integrity" "sha512-1yD6RmLI1XBfxugvORwlck6f75tYL+iR0jqwsOrOxMZyGYqUuDhJ0l4AXdO1iX/FTs9cBAMEk1gWSEx1kSbylg=="
@@ -6903,10 +6894,10 @@
     "rgb-regex" "^1.0.1"
     "rgba-regex" "^1.0.0"
 
-"is-core-module@^2.0.0", "is-core-module@^2.2.0", "is-core-module@^2.8.0":
-  "integrity" "sha512-vd15qHsaqrRL7dtH6QNuy0ndJmRDrS9HAM1CAiSifNUFv4x1a0CCVsj18hJ1mShxIG6T2i1sO78MkP56r0nYRw=="
-  "resolved" "https://registry.npmjs.org/is-core-module/-/is-core-module-2.8.0.tgz"
-  "version" "2.8.0"
+"is-core-module@^2.0.0", "is-core-module@^2.2.0", "is-core-module@^2.8.1", "is-core-module@^2.9.0":
+  "integrity" "sha512-Erxj2n/LDAZ7H8WNJXd9tw38GYM3dv8rk8Zcs+jJuxYTW7sozH+SS8NtrSjVL1/vpLvWi1hxy96IzjJ3EHTJJg=="
+  "resolved" "https://registry.npmjs.org/is-core-module/-/is-core-module-2.10.0.tgz"
+  "version" "2.10.0"
   dependencies:
     "has" "^1.0.3"
 
@@ -7987,14 +7978,6 @@
     "emojis-list" "^3.0.0"
     "json5" "^2.1.2"
 
-"locate-path@^2.0.0":
-  "integrity" "sha1-K1aLJl7slExtnA3pw9u7ygNUzY4="
-  "resolved" "https://registry.npmjs.org/locate-path/-/locate-path-2.0.0.tgz"
-  "version" "2.0.0"
-  dependencies:
-    "p-locate" "^2.0.0"
-    "path-exists" "^3.0.0"
-
 "locate-path@^3.0.0":
   "integrity" "sha512-7AO748wWnIhNqAuaty2ZWHkQHRSNfPVIsPIfwEOWO22AmaoVrWavlOcMR5nzTLNYvp36X220/maaRsrec1G65A=="
   "resolved" "https://registry.npmjs.org/locate-path/-/locate-path-3.0.0.tgz"
@@ -8311,10 +8294,17 @@
   dependencies:
     "brace-expansion" "^1.1.7"
 
-"minimist@^1.1.1", "minimist@^1.2.0", "minimist@^1.2.5":
-  "integrity" "sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw=="
-  "resolved" "https://registry.npmjs.org/minimist/-/minimist-1.2.5.tgz"
-  "version" "1.2.5"
+"minimatch@^3.1.2":
+  "integrity" "sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw=="
+  "resolved" "https://registry.npmjs.org/minimatch/-/minimatch-3.1.2.tgz"
+  "version" "3.1.2"
+  dependencies:
+    "brace-expansion" "^1.1.7"
+
+"minimist@^1.1.1", "minimist@^1.2.0", "minimist@^1.2.5", "minimist@^1.2.6":
+  "integrity" "sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q=="
+  "resolved" "https://registry.npmjs.org/minimist/-/minimist-1.2.6.tgz"
+  "version" "1.2.6"
 
 "minipass-collect@^1.0.2":
   "integrity" "sha512-6T6lH0H8OG9kITm/Jm6tdooIbogG9e0tLgpY6mphXSm/A9u8Nq1ryBG+Qspiub9LjWlBPsPS3tWQ/Botq4FdxA=="
@@ -8846,13 +8836,6 @@
   "resolved" "https://registry.npmjs.org/p-finally/-/p-finally-1.0.0.tgz"
   "version" "1.0.0"
 
-"p-limit@^1.1.0":
-  "integrity" "sha512-vvcXsLAJ9Dr5rQOPk7toZQZJApBl2K4J6dANSsEuh6QI41JYcsS/qhTGa9ErIUUgK3WNQoJYvylxvjqmiqEA9Q=="
-  "resolved" "https://registry.npmjs.org/p-limit/-/p-limit-1.3.0.tgz"
-  "version" "1.3.0"
-  dependencies:
-    "p-try" "^1.0.0"
-
 "p-limit@^2.0.0":
   "integrity" "sha512-//88mFWSJx8lxCzwdAABTJL2MyWB12+eIY7MDL2SqLmAkeKU9qxRvWuSyTjm3FUmpBEMuFfckAIqEaVGUDxb6w=="
   "resolved" "https://registry.npmjs.org/p-limit/-/p-limit-2.3.0.tgz"
@@ -8873,13 +8856,6 @@
   "version" "3.1.0"
   dependencies:
     "yocto-queue" "^0.1.0"
-
-"p-locate@^2.0.0":
-  "integrity" "sha1-IKAQOyIqcMj9OcwuWAaA893l7EM="
-  "resolved" "https://registry.npmjs.org/p-locate/-/p-locate-2.0.0.tgz"
-  "version" "2.0.0"
-  dependencies:
-    "p-limit" "^1.1.0"
 
 "p-locate@^3.0.0":
   "integrity" "sha512-x+12w/To+4GFfgJhBEpiDcLozRJGegY+Ei7/z0tSLkMmxGZNybVMSfWj9aJn8Z5Fc7dBUNJOOVgPv2H7IwulSQ=="
@@ -8920,11 +8896,6 @@
   "version" "3.0.1"
   dependencies:
     "retry" "^0.12.0"
-
-"p-try@^1.0.0":
-  "integrity" "sha1-y8ec26+P1CKOE/Yh8rGiN8GyB7M="
-  "resolved" "https://registry.npmjs.org/p-try/-/p-try-1.0.0.tgz"
-  "version" "1.0.0"
 
 "p-try@^2.0.0":
   "integrity" "sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ=="
@@ -9057,7 +9028,7 @@
   "resolved" "https://registry.npmjs.org/path-key/-/path-key-3.1.1.tgz"
   "version" "3.1.1"
 
-"path-parse@^1.0.6":
+"path-parse@^1.0.6", "path-parse@^1.0.7":
   "integrity" "sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw=="
   "resolved" "https://registry.npmjs.org/path-parse/-/path-parse-1.0.7.tgz"
   "version" "1.0.7"
@@ -9155,13 +9126,6 @@
   "version" "4.0.1"
   dependencies:
     "node-modules-regexp" "^1.0.0"
-
-"pkg-dir@^2.0.0":
-  "integrity" "sha1-9tXREJ4Z1j7fQo4L1X4Sd3YVM0s="
-  "resolved" "https://registry.npmjs.org/pkg-dir/-/pkg-dir-2.0.0.tgz"
-  "version" "2.0.0"
-  dependencies:
-    "find-up" "^2.1.0"
 
 "pkg-dir@^3.0.0":
   "integrity" "sha512-/E57AYkoeQ25qkxMj5PBOVgF8Kiu/h7cYS30Z5+R7WaiCCBfLq58ZI/dSeaEKb9WVJV5n/03QwrN3IeWIFllvw=="
@@ -10875,13 +10839,14 @@
   "resolved" "https://registry.npmjs.org/resolve-url/-/resolve-url-0.2.1.tgz"
   "version" "0.2.1"
 
-"resolve@^1.1.6", "resolve@^1.1.7", "resolve@^1.10.0", "resolve@^1.12.0", "resolve@^1.14.2", "resolve@^1.17.0", "resolve@^1.18.1", "resolve@^1.20.0", "resolve@^1.3.2", "resolve@^1.8.1":
-  "integrity" "sha512-wENBPt4ySzg4ybFQW2TT1zMQucPK95HSh/nq2CFTZVOGut2+pQvSsgtda4d26YrYcr067wjbmzOG8byDPBX63A=="
-  "resolved" "https://registry.npmjs.org/resolve/-/resolve-1.20.0.tgz"
-  "version" "1.20.0"
+"resolve@^1.1.6", "resolve@^1.1.7", "resolve@^1.10.0", "resolve@^1.12.0", "resolve@^1.14.2", "resolve@^1.17.0", "resolve@^1.18.1", "resolve@^1.20.0", "resolve@^1.22.0", "resolve@^1.3.2", "resolve@^1.8.1":
+  "integrity" "sha512-nBpuuYuY5jFsli/JIs1oldw6fOQCBioohqWZg/2hiaOybXOft4lonv85uDOKXdf8rhyK159cxU5cDcK/NKk8zw=="
+  "resolved" "https://registry.npmjs.org/resolve/-/resolve-1.22.1.tgz"
+  "version" "1.22.1"
   dependencies:
-    "is-core-module" "^2.2.0"
-    "path-parse" "^1.0.6"
+    "is-core-module" "^2.9.0"
+    "path-parse" "^1.0.7"
+    "supports-preserve-symlinks-flag" "^1.0.0"
 
 "resolve@^2.0.0-next.3":
   "integrity" "sha512-W8LucSynKUIDu9ylraa7ueVZ7hc0uAgJBxVsQSKOXOyle8a93qXhcz+XAXZ8bIq2d6i4Ehddn6Evt+0/UwKk6Q=="
@@ -11821,7 +11786,7 @@
     "ansi-regex" "^5.0.0"
 
 "strip-bom@^3.0.0":
-  "integrity" "sha1-IzTBjpx1n3vdVv3vfprj1YjmjtM="
+  "integrity" "sha512-vavAMRXOgBVNF6nyEEmL3DBK19iRpDcoIwW+swQ+CbGiu7lju6t+JklA1MHweoWtadgt4ISVUsXLyDq34ddcwA=="
   "resolved" "https://registry.npmjs.org/strip-bom/-/strip-bom-3.0.0.tgz"
   "version" "3.0.0"
 
@@ -11961,6 +11926,11 @@
   dependencies:
     "has-flag" "^4.0.0"
     "supports-color" "^7.0.0"
+
+"supports-preserve-symlinks-flag@^1.0.0":
+  "integrity" "sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w=="
+  "resolved" "https://registry.npmjs.org/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz"
+  "version" "1.0.0"
 
 "svg-parser@^2.0.2":
   "integrity" "sha512-e4hG1hRwoOdRb37cIMSgzNsxyzKfayW6VOflrwvR+/bzrkyxY/31WkbgnQpgtrNp1SdpJvpUAGTa/ZoiPNDuRQ=="
@@ -12249,14 +12219,14 @@
   "resolved" "https://registry.npmjs.org/ts-pnp/-/ts-pnp-1.2.0.tgz"
   "version" "1.2.0"
 
-"tsconfig-paths@^3.11.0":
-  "integrity" "sha512-e5adrnOYT6zqVnWqZu7i/BQ3BnhzvGbjEjejFXO20lKIKpwTaupkCPgEfv4GZK1IBciJUEhYs3J3p75FdaTFVg=="
-  "resolved" "https://registry.npmjs.org/tsconfig-paths/-/tsconfig-paths-3.12.0.tgz"
-  "version" "3.12.0"
+"tsconfig-paths@^3.14.1":
+  "integrity" "sha512-fxDhWnFSLt3VuTwtvJt5fpwxBHg5AdKWMsgcPOOIilyjymcYVZoCQF8fvFRezCNfblEXmi+PcM1eYHeOAgXCOQ=="
+  "resolved" "https://registry.npmjs.org/tsconfig-paths/-/tsconfig-paths-3.14.1.tgz"
+  "version" "3.14.1"
   dependencies:
     "@types/json5" "^0.0.29"
     "json5" "^1.0.1"
-    "minimist" "^1.2.0"
+    "minimist" "^1.2.6"
     "strip-bom" "^3.0.0"
 
 "tslib@^1.8.1":

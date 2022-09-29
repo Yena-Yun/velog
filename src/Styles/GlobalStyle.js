@@ -14,9 +14,11 @@ const GlobalStyle = createGlobalStyle`
     };
     button{
         display: flex;
-        cursor: pointer;
+        justify-content: center;
+        align-items: center;
         outline: none;
         border-radius: 3px;
+        cursor: pointer;
     };
     input{
         display: flex;

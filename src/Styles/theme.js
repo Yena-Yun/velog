@@ -16,6 +16,8 @@ export const FlexColumn = styled(FlexBox)`
       ? 'justify-content: flex-start'
       : justify === 'center'
       ? 'justify-content: center'
+      : justify === 'between'
+      ? 'justify-content: space-between'
       : ''};
   ${({ align }) =>
     align === 'start'
@@ -27,6 +29,10 @@ export const FlexColumn = styled(FlexBox)`
 
 export const FlexCustom = styled(FlexBox)`
   justify-content: ${({ justify }) =>
-    justify === 'between' ? 'space-between' : 'space-around'};
+    justify === 'between'
+      ? 'space-between'
+      : justify === 'end'
+      ? 'flex-end'
+      : 'space-around'};
   align-items: center;
 `;
