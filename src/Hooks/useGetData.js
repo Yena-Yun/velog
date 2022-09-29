@@ -7,10 +7,13 @@ const useGetData = (setDetailData, setCommentData, id) => {
   const getData = async (id) => {
     try {
       setIsLoading(true);
+
       const postResponse = await MenuApi.getPostDetail(id);
       const commentResponse = await MenuApi.getCommentData(id);
+
       setDetailData(postResponse.data);
       setCommentData(commentResponse.data.results);
+
       setIsLoading(false);
     } catch (error) {
       throw new Error('data load 실패');

@@ -1,6 +1,6 @@
 import React from 'react';
 import { style } from './ListSkeletonStyle';
-import CardSkeleton from 'Components/CardSkeleton/CardSkeleton';
+import CardSkeleton from 'Components/skeleton/CardSkeleton/CardSkeleton';
 
 const ListSkeleton = () => {
   return (

@@ -1,65 +1,81 @@
-import React, { useCallback, useState } from 'react';
-import { style } from './WritePageStyle';
-import Button from 'Components/Button/Button';
-import * as axios from 'axios';
-import Editor from 'Components/Editor/Editor';
-import Input from 'Components/Input/Input';
-import Modal from 'Components/Modal/Modal';
+import { useCallback, useState } from 'react';
+import * as S from './style';
+import Editor from 'Components/utils/Editor/Editor';
+import Modal from 'Components/utils/Modal/Modal';
+import Input from 'Components/common/Input/Input';
+import Button from 'Components/common/Button/Button';
 import MenuApi from 'Common/api';
-import parse from 'html-react-parser';
-import { removeHTMLTagFromString } from 'Common/removeHTMLTag';
+import { FlexBox } from 'Styles/theme';
 
 const WritePage = ({ history }) => {
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
-  const [hashTagArr, setHashTagArr] = useState([]);
-  const [viewContent, setViewContent] = useState([]);
-  const [url, setUrl] = useState();
   const [showModal, setShowModal] = useState(false);
   const [check, setCheck] = useState(false);
   const [condition, setCondition] = useState('');
-  const getTitle = (e) => {
+
+  const [preview, setPreview] = useState({ title: '', body: '' });
+  const [post, setPost] = useState({
+    title: '',
+    content: '',
+    hashTags: [],
+    thumbnail: '',
+  });
+
+  const { title, content, hashTags, thumbnail } = post;
+
+  const setTitle = (e) => {
     const { value } = e.target;
-    setTitle(value);
+    setPost({ ...post, title: value });
   };
 
-  const handleKeyEnter = (e) => {
+  const setContent = (e) => {
+    const { value } = e.target;
+    setPost({ ...post, content: value });
+  };
+
+  const addHashTag = (e) => {
     if (e.code === 'Enter') {
-      setHashTagArr([...hashTagArr, e.target.value]);
+      const { value } = e.target;
+      setPost({ ...post, hashTags: [...hashTags, value] });
+
       e.target.value = '';
     }
   };
 
-  const removeHashTag = (hashtag) => {
-    setHashTagArr(hashTagArr.filter((element) => hashtag !== element));
+  const removeHashTag = (selectedTag) => {
+    const newTags = hashTags.filter((tag) => tag !== selectedTag);
+    setPost({ ...post, hashTags: newTags });
+  };
+
+  const setUrl = (e) => {
+    const { value } = e.target;
+    setPost({ ...post, thumbnail: value });
   };
 
   const previewPost = () => {
-    setViewContent({ title: title, body: content, hashTagArr: hashTagArr });
+    // setPreview({ title, content, hashTags });
   };
 
-  const addPostLocalStorage = () => {
-    const postTitle = {
-      title: title,
-      content: content,
-      tags: hashTagArr,
-      thumbnail: url,
+  const savePost = () => {
+    const newPost = {
+      title,
+      content,
+      hashTags,
+      thumbnail,
     };
-    localStorage.setItem('posts', JSON.stringify(postTitle));
+
+    localStorage.setItem('post', JSON.stringify(newPost));
   };
 
-  const getPostLocalStorage = () => {
-    const post = JSON.parse(localStorage.getItem('posts'));
-    setTitle(post.title);
-    setContent(post.content);
-    setHashTagArr(post.tags);
-    setUrl(post.thumbnail);
+  const loadPost = () => {
+    const savedPost = JSON.parse(localStorage.getItem('post'));
+    setPost(savedPost);
+
     setCheck(true);
   };
 
-  const registerPost = async () => {
+  const onCreatePost = async () => {
     try {
-      await MenuApi.createPost(title, content, url, hashTagArr);
+      await MenuApi.createPost(title, content, hashTags, thumbnail);
       history.push('/');
       console.log('POST 성공!');
     } catch (error) {
@@ -69,6 +85,7 @@ const WritePage = ({ history }) => {
 
   const onToggleModal = useCallback((condition) => {
     setShowModal(false);
+
     if (condition) {
       setCondition(condition);
       setShowModal(true);
@@ -79,35 +96,44 @@ const WritePage = ({ history }) => {
     onToggleModal('goToBack');
   };
 
-  console.log(typeof viewContent.body);
+  // console.log(typeof preview.body);
 
   return (
-    <Container>
-      <WriteContainer>
-        <WriteHeader>
+    <S.Container>
+      <S.WriteContainer>
+        <S.WriteHeader justify="between">
           <div>
-            <WriteTitle onChange={getTitle} value={title} />
-            <WriteLine />
-            <WriteTagContainer>
-              <WriteTagContent>
-                {hashTagArr.map((hashtag, idx) => {
-                  return (
-                    <div key={idx} onClick={() => removeHashTag(hashtag)}>
-                      <span>{hashtag}</span>
-                    </div>
-                  );
-                })}
-              </WriteTagContent>
-              <WriteTag onKeyPress={handleKeyEnter} />
-            </WriteTagContainer>
+            <S.WriteTitle
+              value={title}
+              onChange={setTitle}
+              placeholder="제목을 입력하세요"
+            />
+            <S.WriteLine />
+
+            <S.WriteTagContainer>
+              <S.WriteTagContent>
+                {hashTags.map((tag, idx) => (
+                  <div key={idx} onClick={() => removeHashTag(tag)}>
+                    <span>{tag}</span>
+                  </div>
+                ))}
+              </S.WriteTagContent>
+
+              <S.WriteTag
+                onKeyPress={addHashTag}
+                placeholder="태그를 입력하세요"
+              />
+            </S.WriteTagContainer>
           </div>
-          <Input url={url} setUrl={setUrl} />
-        </WriteHeader>
-        <EditorContainer>
+
+          <Input thumbnail={thumbnail} onChange={setUrl} />
+        </S.WriteHeader>
+
+        <S.EditorContainer>
           <Editor content={content} setContent={setContent} />
-        </EditorContainer>
-        <WriteFooter>
-          <div>
+        </S.EditorContainer>
+        <S.WriteFooter justify="between">
+          <FlexBox>
             <Button
               style={{
                 background: '#fff',
@@ -116,11 +142,11 @@ const WritePage = ({ history }) => {
               text="🔙 뒤로가기"
               _onClick={onOpenModal}
             />
-          </div>
+          </FlexBox>
           <div>
             <Button
               text="임시저장"
-              _onClick={addPostLocalStorage}
+              onClick={savePost}
               style={{
                 background: 'rgb(233, 236, 239)',
                 color: 'rgb(73, 80, 87)',
@@ -129,7 +155,7 @@ const WritePage = ({ history }) => {
             />
             <Button
               text="불러오기"
-              _onClick={getPostLocalStorage}
+              onClick={loadPost}
               style={{
                 background: 'rgb(233, 236, 239)',
                 color: 'rgb(73, 80, 87)',
@@ -145,16 +171,18 @@ const WritePage = ({ history }) => {
                 marginRight: '10px',
               }}
             />
-            <Button text="출간하기" _onClick={registerPost} />
+            <Button text="출간하기" onClick={onCreatePost} />
           </div>
-        </WriteFooter>
-      </WriteContainer>
-      <PreviewContainer>
+        </S.WriteFooter>
+      </S.WriteContainer>
+
+      <S.PreviewContainer>
         <div>
-          <h2>{viewContent.title}</h2>
-          <div dangerouslySetInnerHTML={{ __html: viewContent.body }}></div>
+          <h2>{preview.title}</h2>
+          <div dangerouslySetInnerHTML={{ __html: preview.body }}></div>
         </div>
-      </PreviewContainer>
+      </S.PreviewContainer>
+
       {showModal && (
         <Modal
           title="포스트 작성 취소"
@@ -165,20 +193,8 @@ const WritePage = ({ history }) => {
           history={history}
         />
       )}
-    </Container>
+    </S.Container>
   );
 };
+
 export default WritePage;
-const {
-  Container,
-  WriteContainer,
-  WriteHeader,
-  WriteTitle,
-  WriteLine,
-  WriteTagContainer,
-  WriteTagContent,
-  WriteTag,
-  EditorContainer,
-  WriteFooter,
-  PreviewContainer,
-} = style;

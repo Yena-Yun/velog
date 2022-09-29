@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import useGetListData from 'Hooks/useGetListData';
-import Header from 'Components/Header/Header';
-import Card from 'Components/Card/Card';
-import ListSkeleton from 'Components/ListSkeleton/ListSkeleton';
-import ScrollToTop from 'Components/ScrollToTop/ScrollToTop';
+import Header from 'Components/Layout/Header/Header';
+import Card from 'Components/utils/Card/Card';
+import ListSkeleton from 'Components/skeleton/ListSkeleton/ListSkeleton';
+import ScrollToTop from 'Components/utils/ScrollToTop/ScrollToTop';
 import MenuApi from 'Common/api';
 import * as S from './style';
 

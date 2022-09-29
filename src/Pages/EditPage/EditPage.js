@@ -1,13 +1,12 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { style } from 'Pages/WritePage/WritePageStyle';
-import Button from 'Components/Button/Button';
-import Editor from 'Components/Editor/Editor';
-import Input from 'Components/Input/Input';
+import { useState, useEffect, useCallback } from 'react';
 import { useSelector } from 'react-redux';
-import MenuApi from 'Common/api';
-import Modal from 'Components/Modal/Modal';
 import parse from 'html-react-parser';
-import { removeHTMLTagFromString } from 'Common/removeHTMLTag';
+import * as S from 'Pages/WritePage/style';
+import Editor from 'Components/utils/Editor/Editor';
+import Modal from 'Components/utils/Modal/Modal';
+import Input from 'Components/common/Input/Input';
+import Button from 'Components/common/Button/Button';
+import MenuApi from 'Common/api';
 
 const EditPage = ({ history }) => {
   const [loading, setLoading] = useState(false);
@@ -105,15 +104,15 @@ const EditPage = ({ history }) => {
   //   console.log(parse(viewContent.body).replace(/(<([^>]+)>)/gi, ''));
 
   return (
-    <Container>
+    <S.Container>
       {!loading && (
-        <WriteContainer>
-          <WriteHeader>
+        <S.WriteContainer>
+          <S.WriteHeader>
             <div>
-              <WriteTitle onChange={editTitle} value={title} />
-              <WriteLine />
-              <WriteTagContainer>
-                <WriteTagContent>
+              <S.WriteTitle onChange={editTitle} value={title} />
+              <S.WriteLine />
+              <S.WriteTagContainer>
+                <S.WriteTagContent>
                   {hashTagArr.map((hashtag, idx) => {
                     return (
                       <div key={idx} onClick={() => removeHashTag(hashtag)}>
@@ -121,20 +120,20 @@ const EditPage = ({ history }) => {
                       </div>
                     );
                   })}
-                </WriteTagContent>
-                <WriteTag onKeyPress={handleKeyEnter} />
-              </WriteTagContainer>
+                </S.WriteTagContent>
+                <S.WriteTag onKeyPress={handleKeyEnter} />
+              </S.WriteTagContainer>
             </div>
             <Input url={url} setUrl={setUrl} />
-          </WriteHeader>
-          <EditorContainer>
+          </S.WriteHeader>
+          <S.EditorContainer>
             <Editor
               setContent={setContent}
               loadedContent={loadedContent}
               setLoadedContent={setLoadedContent}
             />
-          </EditorContainer>
-          <WriteFooter>
+          </S.EditorContainer>
+          <S.WriteFooter>
             <div>
               <Button
                 style={{
@@ -176,10 +175,10 @@ const EditPage = ({ history }) => {
               />
               <Button text="수정하기" _onClick={() => editPost()} />
             </div>
-          </WriteFooter>
-        </WriteContainer>
+          </S.WriteFooter>
+        </S.WriteContainer>
       )}
-      <PreviewContainer>
+      <S.PreviewContainer>
         <div>
           <h2>{viewContent.title}</h2>
 
@@ -197,7 +196,7 @@ const EditPage = ({ history }) => {
                 );
               })}
         </div>
-      </PreviewContainer>
+      </S.PreviewContainer>
       {showModal && (
         <Modal
           title="포스트 작성 취소"
@@ -208,22 +207,8 @@ const EditPage = ({ history }) => {
           history={history}
         />
       )}
-    </Container>
+    </S.Container>
   );
 };
 
 export default EditPage;
-
-const {
-  Container,
-  WriteContainer,
-  WriteHeader,
-  WriteTitle,
-  WriteLine,
-  WriteTagContainer,
-  WriteTagContent,
-  WriteTag,
-  EditorContainer,
-  WriteFooter,
-  PreviewContainer,
-} = style;
