@@ -6,7 +6,7 @@ Devfolio 기관에서 주최 ㅡ [velog](https://velog.io/) 사이트 벤치마�
 
 ## 👘 배운 점
 - React에서의 CRUD 연습
-- 제공된 [Swagger UI](https://limitless-sierra-67996.herokuapp.com/v1/docs/)를 활용한 서버와의 API 통신
+- 제공된 Swagger UI를 활용한 서버와의 API 통신
 
 
 
